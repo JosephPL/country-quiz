@@ -10,11 +10,10 @@ function App() {
         <h1>Capital Quiz</h1>
         <Routes>
           <Route
-            exact
-            path="/country-quiz"
+            path="/"
             element={<Card urlApi="https://restcountries.com/v3.1/all" />}
           />
-          <Route path="/result" element={<Result />} />
+          <Route path="result" element={<Result />} />
         </Routes>
       </div>
 
