@@ -3,15 +3,27 @@ import {
   faCircleXmark,
   faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppProvider";
 
 const Card = ({ urlApi }) => {
-  const [capital, setCapital] = useState("");
-  const [answers, setAnswers] = useState([]);
-  const [correctAnswer, setCorrectAnswer] = useState("");
-  const [score, setScore] = useState(0);
+  const navigate = useNavigate();
+  const {
+    capital,
+    setCapital,
+    answers,
+    setAnswers,
+    correctAnswer,
+    setCorrectAnswer,
+    setScore,
+    question,
+    setQuestion,
+  } = useContext(AppContext);
 
   useEffect(() => {
+    setScore(0);
+    setQuestion(0);
     fetchData();
   }, []);
 
@@ -56,12 +68,22 @@ const Card = ({ urlApi }) => {
       setTimeout(() => {
         e.classList.remove("success");
         setScore((prevScore) => prevScore + 1);
+
+        setQuestion((prevQuestion) => prevQuestion + 1);
+        if (question == 4) {
+          navigate("/result");
+        }
         fetchData();
       }, 500);
     } else {
       e.classList.add("fail");
       setTimeout(() => {
         e.classList.remove("fail");
+
+        setQuestion((prevQuestion) => prevQuestion + 1);
+        if (question == 4) {
+          navigate("/result");
+        }
         fetchData();
       }, 500);
     }
@@ -81,7 +103,6 @@ const Card = ({ urlApi }) => {
           {item}
         </button>
       ))}
-      <p>score : {score}</p>
     </div>
   );
 };
