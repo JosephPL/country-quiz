@@ -7,7 +7,7 @@ import { AppProvider } from "./context/AppProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <AppProvider>
-    <BrowserRouter>
+    <BrowserRouter basename="/country-quiz">
       <App />
     </BrowserRouter>
   </AppProvider>
