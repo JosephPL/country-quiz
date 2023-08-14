@@ -7,7 +7,7 @@ export const AppProvider = (props) => {
   const [answers, setAnswers] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [score, setScore] = useState(0);
-  const [question, setQuestion] = useState(0);
+  const [question, setQuestion] = useState(1);
 
   return (
     <AppContext.Provider

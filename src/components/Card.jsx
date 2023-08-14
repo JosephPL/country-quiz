@@ -1,8 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleXmark,
-  faCircleCheck,
-} from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
@@ -23,7 +18,7 @@ const Card = ({ urlApi }) => {
 
   useEffect(() => {
     setScore(0);
-    setQuestion(0);
+    setQuestion(1);
     fetchData();
   }, []);
 
@@ -70,7 +65,7 @@ const Card = ({ urlApi }) => {
         setScore((prevScore) => prevScore + 1);
 
         setQuestion((prevQuestion) => prevQuestion + 1);
-        if (question == 4) {
+        if (question === 5) {
           navigate("/result");
         }
         fetchData();
@@ -81,7 +76,7 @@ const Card = ({ urlApi }) => {
         e.classList.remove("fail");
 
         setQuestion((prevQuestion) => prevQuestion + 1);
-        if (question == 4) {
+        if (question == 5) {
           navigate("/result");
         }
         fetchData();
@@ -91,6 +86,7 @@ const Card = ({ urlApi }) => {
 
   return (
     <div className="cardQuiz">
+      <p>Question {question} / 5</p>
       <h2>{capital} is the capital of</h2>
       {answers.map((item, index) => (
         <button
